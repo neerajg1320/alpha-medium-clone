@@ -10,3 +10,7 @@ python manage.py startapp common
 # Move the apps users, profiles, common into core_apps
 
 python manage.py runserver
+
+# Setup logging in base.py
+
+# Setup database once logging is verified 
