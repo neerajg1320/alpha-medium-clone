@@ -14,3 +14,15 @@ python manage.py runserver
 # Setup logging in base.py
 
 # Setup database once logging is verified 
+
+# Setup Docker with django
+mkdir docker && cd docker
+mkdir local && cd local
+mkdir django && cd django
+
+# We will do multistage build
+
+# Create the env variables
+
+
+docker compose -f local.yml config
