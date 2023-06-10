@@ -20,7 +20,7 @@ services:
       - mailhog
     command: /start
     networks:
-      - authors-api
+      - medium-authors-api
 
   postgres:
     build:
@@ -33,7 +33,7 @@ services:
     env_file:
       - ./.envs/.local/.postgres
     networks:
-      - authors-api            
+      - medium-authors-api            
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
@@ -41,10 +41,10 @@ services:
     ports:
       - "8025:8025"
     networks:
-      - authors-api
+      - medium-authors-api
 
 networks:
-  authors-api:
+  medium-authors-api:
     driver: bridge
 
 volumes:
