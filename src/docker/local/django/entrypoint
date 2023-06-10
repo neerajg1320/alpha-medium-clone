@@ -34,4 +34,4 @@ while True:
     time.sleep(1)
 END
 
-execute "$@"
+exec "$@"
