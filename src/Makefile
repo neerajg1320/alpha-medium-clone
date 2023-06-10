@@ -4,6 +4,12 @@ build:
 up:
 	docker compose -f local.yml up -d
 
+up-api:
+	docker compose -f local.yml up -d api
+
+up-postgres:
+	docker compose -f local.yml up -d postgres
+
 down:
 	docker compose -f local.yml down
 

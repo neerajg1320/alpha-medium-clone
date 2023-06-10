@@ -45,9 +45,10 @@ THIRD_PARTY_APPS = [
 ]
     
 LOCAL_APPS = [
+    'core_apps.users',
     # 'core_apps.profiles',
     # 'core_apps.common',
-    # 'core_apps.users',
+
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -158,6 +159,8 @@ MEDIA_ROOT = str(ROOT_DIR / 'mediafiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_URLS_REGEX = r'^api/.*$'
+
+AUTH_USER_MODEL = "users.User"
 
 LOGGING = {
     "version": 1,
