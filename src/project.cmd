@@ -24,5 +24,8 @@ mkdir django && cd django
 
 # Create the env variables
 
-
+# To check docker compose 
 docker compose -f local.yml config
+
+# To build images and run containers.
+docker compose -f local.yml up --build -d --remove-orphans

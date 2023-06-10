@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/local/django/Dockerfile
+    container_name: medium-api
     volumes:
       - .:/app:z
       - static_volume:/app/static_files
@@ -24,7 +25,8 @@ services:
   postgres:
     build:
       context: .
-      dockerfile: ./docker/local/postgres/Dockerfile  
+      dockerfile: ./docker/local/postgres/Dockerfile
+    container_name: medium-postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups
@@ -35,7 +37,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
-    container_name: mailhog
+    container_name: medium-mailhog
     ports:
       - "8025:8025"
     networks:
