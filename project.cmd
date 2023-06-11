@@ -27,5 +27,8 @@ mkdir django && cd django
 # To check docker compose 
 docker compose -f local.yml config
 
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+
 # To build images and run containers.
 docker compose -f local.yml up --build -d --remove-orphans

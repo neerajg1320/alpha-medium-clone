@@ -1,0 +1,5 @@
+Problem 1: 
+Migration Problem with users and admin when using Custom User mode.
+
+https://stackoverflow.com/questions/44651760/django-db-migrations-exceptions-inconsistentmigrationhistory
+We need to disable the changes made for admin

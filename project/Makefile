@@ -10,6 +10,9 @@ up-api:
 up-postgres:
 	docker compose -f local.yml up -d postgres
 
+shell-api:
+	docker compose -f local.yml run api bash
+
 down:
 	docker compose -f local.yml down
 
@@ -61,4 +64,5 @@ isort-diff:
 isort:
 	docker compose -f local.yml exec api isort . --skip venv --skip migrations
 
-
+psql:
+	docker compose -f helpers.yml run monitor sh -c 'psql -h postgres -U neeraj authors-live'

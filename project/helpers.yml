@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  monitor:
+    build:
+      context: .
+      dockerfile: ./docker/local/helpers/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.envs/.local/.postgres
+    networks:
+      - medium-authors-api
+
+networks:
+  medium-authors-api: 
+    external: true
+
