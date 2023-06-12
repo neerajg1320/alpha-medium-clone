@@ -11,10 +11,10 @@ up-helpers:
 	docker compose -f helpers.yml up -d	--remove-orphans
 
 up-api:
-	docker compose -f local.yml up -d api
+	docker compose -f local.yml up api
 
 up-postgres:
-	docker compose -f local.yml up -d postgres
+	docker compose -f local.yml up postgres
 
 shell-api:
 	docker compose -f local.yml run api bash
@@ -72,6 +72,10 @@ isort-diff:
 
 isort:
 	docker compose -f local.yml exec api isort . --skip venv --skip migrations
+
+
+remove-volumes:
+	docker volume rm medium_local_postgres_data medium_local_postgres_data_backups medium_media_volume medium_static_volume
 
 psql:
 	docker compose -f helpers.yml run monitor sh -c 'psql -h postgres -U neeraj authors-live'
