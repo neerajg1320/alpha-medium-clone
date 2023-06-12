@@ -1,8 +1,14 @@
 build:
-	docker compose -f local.yml up --build -d --remove-orphans
+	docker compose -f local.yml build 
+
+build-helpers:
+	docker compose -f helpers.yml build 
 
 up:
 	docker compose -f local.yml up -d
+
+up-helpers:
+	docker compose -f helpers.yml up -d	--remove-orphans
 
 up-api:
 	docker compose -f local.yml up -d api
@@ -12,6 +18,9 @@ up-postgres:
 
 shell-api:
 	docker compose -f local.yml run api bash
+
+shell-api-container:
+	docker exec -it project-api-1 bash
 
 down:
 	docker compose -f local.yml down
@@ -66,3 +75,9 @@ isort:
 
 psql:
 	docker compose -f helpers.yml run monitor sh -c 'psql -h postgres -U neeraj authors-live'
+
+check-api:
+	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 192.168.48.4 8000'
+
+check-noserver:
+	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 192.168.48.4 8010'
