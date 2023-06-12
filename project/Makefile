@@ -16,6 +16,9 @@ down-helpers:
 shell-monitor:
 	docker compose -f helpers.yml run monitor bash
 
+up-nginx:
+	docker compose -f local.yml up nginx
+
 up-api:
 	docker compose -f local.yml up api
 
@@ -27,6 +30,10 @@ shell-api:
 
 shell-api-container:
 	docker exec -it medium-api-1 bash
+
+shell-nginx-container:
+	docker exec -it medium-nginx-1 sh
+
 
 down:
 	docker compose -f local.yml down
