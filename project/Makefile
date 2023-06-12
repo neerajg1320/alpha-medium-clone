@@ -10,6 +10,9 @@ up:
 up-helpers:
 	docker compose -f helpers.yml up -d	--remove-orphans
 
+down-helpers:
+	docker compose -f helpers.yml down
+
 shell-monitor:
 	docker compose -f helpers.yml run monitor bash
 
@@ -86,8 +89,11 @@ remove-volumes:
 psql:
 	docker compose -f helpers.yml run monitor sh -c 'psql -h postgres -U neeraj authors-live'
 
+ping-api:
+	docker compose -f helpers.yml run --rm monitor sh -c 'ping api'
+
 check-api:
-	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 192.168.48.4 8000'
+	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 api 8000'
 
 check-noserver:
-	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 192.168.48.4 8010'
+	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 api 8010'
