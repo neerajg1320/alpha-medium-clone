@@ -10,6 +10,9 @@ up:
 up-helpers:
 	docker compose -f helpers.yml up -d	--remove-orphans
 
+shell-monitor:
+	docker compose -f helpers.yml run monitor bash
+
 up-api:
 	docker compose -f local.yml up api
 
@@ -20,7 +23,7 @@ shell-api:
 	docker compose -f local.yml run api bash
 
 shell-api-container:
-	docker exec -it project-api-1 bash
+	docker exec -it medium-api-1 bash
 
 down:
 	docker compose -f local.yml down
@@ -32,10 +35,13 @@ show-logs-api:
 	docker compose -f local.yml logs api
 
 makemigrations:
-	docker compose -f local.yml run --rm api python manage.py makemigrations
+	docker compose -f local.yml run --rm api sh -c "python manage.py makemigrations"
+
+makemigrations-users:
+	docker compose -f local.yml run --rm api sh -c "python manage.py makemigrations users"
 
 migrate:
-	docker compose -f local.yml run --rm api python manage.py migrate
+	docker compose -f local.yml run --rm api sh -c "python manage.py migrate"
 
 collectstatic:
 	docker compose -f local.yml run --rm api python manage.py collectstatic --no-input --clear
