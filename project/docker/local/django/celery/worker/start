@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+exec watchfiles celery.__main__.main --args '-A project.celery worker -l INFO'
