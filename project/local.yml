@@ -76,6 +76,7 @@ services:
       dockerfile: ./docker/local/django/Dockerfile
     command: /start-flower
     volumes:
+      - .:/app
       - flower_data:/data
     env_file:
       - ./.envs/.local/.django
