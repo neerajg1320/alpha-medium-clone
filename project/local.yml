@@ -55,7 +55,8 @@ services:
 
   celery_worker:
     build:
-      context: ./docker/local/django/Dockerfile
+      context: .
+      dockerfile: ./docker/local/django/Dockerfile
     command: /start-celery-worker
     volumes:
       - .:/app
