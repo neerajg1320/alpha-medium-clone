@@ -20,4 +20,5 @@ app.autodiscover_tasks()
 
 @app.task(bind=True)
 def debug_task(self):
+    print("CeleryWorker: received task")
     print('Request: {0!r}'.format(self.request))
