@@ -25,7 +25,7 @@ urlpatterns = [
     path("api/v1/auth/user/", CustomUserDetailsView.as_view(), name="user_details"),
     path("api/v1/auth/", include("dj_rest_auth.urls"), name="user_details"),
     path("api/v1/auth/registration/", include("dj_rest_auth.registration.urls")),
-    path("api/v1/auth/password/reset/confirm/<uidb64>/token/",
+    path("api/v1/auth/password/reset/confirm/<uidb64>/<token>/",
          PasswordResetConfirmView.as_view(), name="password_reset_confirm")
 ]
 

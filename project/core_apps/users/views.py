@@ -9,7 +9,8 @@ class CustomUserDetailsView(RetrieveUpdateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_object(self):
-        return super().get_object()
+        # return super().get_object()
+        return self.request.user
 
     def get_queryset(self):
         return get_user_model().objects.none()
