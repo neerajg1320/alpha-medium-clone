@@ -49,7 +49,7 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     lookup_field = "id"
     renderer_classes = [ArticleJSONRenderer]
-    parser_classes = [MultiPartParser, FormParser]
+    # parser_classes = [MultiPartParser, FormParser]
 
     def perform_update(self, serializer):
         instance = serializer.save(author=self.request.user)
