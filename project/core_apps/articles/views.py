@@ -6,7 +6,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, permissions, status
-from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.response import Response
 
 from .filters import ArticleFilter
@@ -49,18 +49,18 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     lookup_field = "id"
     renderer_classes = [ArticleJSONRenderer]
-    # parser_classes = [MultiPartParser, FormParser]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def perform_update(self, serializer):
         instance = serializer.save(author=self.request.user)
-        # if "banner_image" in self.request.FILES:
-        #     if (
-        #             instance.banner_image
-        #             and instance.banner_image.name != "/profile_default.png"
-        #     ):
-        #         default_storage.delete(instance.banner_image.path)
-        #     instance.banner_image = self.request.FILES["banner_image"]
-        #     instance.save()
+        if "banner_image" in self.request.FILES:
+            if (
+                    instance.banner_image
+                    and instance.banner_image.name != "/profile_default.png"
+            ):
+                default_storage.delete(instance.banner_image.path)
+            instance.banner_image = self.request.FILES["banner_image"]
+            instance.save()
 
     def retrieve(self, request, *args, **kwargs):
         try:
