@@ -4,6 +4,15 @@ build:
 build-helpers:
 	docker compose -f helpers.yml build 
 
+build-es:
+	docker compose -f helpers.yml build es
+
+search-index:
+	docker compose -f local.yml exec api python manage.py search_index --create
+
+populate-index:
+	docker compose -f local.yml exec api python manage.py search_index --populate
+
 up:
 	docker compose -f local.yml up -d
 
@@ -18,6 +27,9 @@ shell-monitor:
 
 up-nginx:
 	docker compose -f local.yml up nginx
+
+up-es:
+	docker compose -f local.yml up es
 
 up-api:
 	docker compose -f local.yml up api
@@ -37,6 +49,9 @@ shell-nginx-container:
 
 down:
 	docker compose -f local.yml down
+
+down-es:
+	docker compose -f local.yml down es
 
 show-logs:
 	docker compose -f local.yml logs

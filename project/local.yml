@@ -23,6 +23,7 @@ services:
       - postgres
       - mailhog
       - redis
+      - es
     command: /start
     networks:
       - medium-authors-api
@@ -38,7 +39,16 @@ services:
     env_file:
       - ./.envs/.local/.postgres
     networks:
-      - medium-authors-api           
+      - medium-authors-api
+
+  es:
+    image: elasticsearch:7.17.9
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    networks:
+      - medium-authors-api
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
