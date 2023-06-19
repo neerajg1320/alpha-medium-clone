@@ -147,4 +147,3 @@ class UnfollowAPIView(APIView):
             "message": f"You have unfollowed {profile.user.first_name} {profile.user.last_name}",
         }
         return Response(formatted_response, status.HTTP_200_OK)
-

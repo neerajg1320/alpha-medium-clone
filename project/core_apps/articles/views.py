@@ -53,8 +53,8 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         instance = serializer.save(author=self.request.user)
         if "banner_image" in self.request.FILES:
             if (
-                    instance.banner_image
-                    and instance.banner_image.name != "/profile_default.png"
+                instance.banner_image
+                and instance.banner_image.name != "/profile_default.png"
             ):
                 default_storage.delete(instance.banner_image.path)
             instance.banner_image = self.request.FILES["banner_image"]
