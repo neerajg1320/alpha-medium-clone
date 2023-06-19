@@ -1,7 +1,5 @@
 from rest_framework import serializers
-
-from core_apps.articles.models import Article, ArticleView
-# from core_apps.articles.models import Article, ArticleView, Clap
+from core_apps.articles.models import Article, ArticleView, Clap
 from core_apps.bookmarks.models import Bookmark
 from core_apps.bookmarks.serializers import BookmarkSerializer
 from core_apps.profiles.serializers import ProfileSerializer
@@ -35,7 +33,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     average_rating = serializers.ReadOnlyField()
     bookmarks = serializers.SerializerMethodField()
     bookmarks_count = serializers.SerializerMethodField()
-    # claps_count = serializers.SerializerMethodField()
+    claps_count = serializers.SerializerMethodField()
     # responses = ResponseSerializer(many=True, read_only=True)
     # responses_count = serializers.IntegerField(source="responses.count", read_only=True)
     created_at = serializers.SerializerMethodField()
@@ -44,8 +42,8 @@ class ArticleSerializer(serializers.ModelSerializer):
     # def get_responses_count(self, obj):
     #     return obj.responses.count()
 
-    # def get_claps_count(self, obj):
-    #     return obj.claps.count()
+    def get_claps_count(self, obj):
+        return obj.claps.count()
 
     def get_bookmarks(self, obj):
         bookmarks = Bookmark.objects.filter(article=obj)
@@ -109,9 +107,9 @@ class ArticleSerializer(serializers.ModelSerializer):
             "body",
             "banner_image",
             "average_rating",
-            "bookmarks_count",
-            # "claps_count",
             "bookmarks",
+            "bookmarks_count",
+            "claps_count",
             # "responses",
             # "responses_count",
             "created_at",
@@ -119,10 +117,10 @@ class ArticleSerializer(serializers.ModelSerializer):
         ]
 
 
-# class ClapSerializer(serializers.ModelSerializer):
-#     article_title = serializers.CharField(source="article.title", read_only=True)
-#     user_first_name = serializers.CharField(source="user.first_name", read_only=True)
-#
-#     class Meta:
-#         model = Clap
-#         fields = ["id", "user_first_name", "article_title"]
+class ClapSerializer(serializers.ModelSerializer):
+    article_title = serializers.CharField(source="article.title", read_only=True)
+    user_first_name = serializers.CharField(source="user.first_name", read_only=True)
+
+    class Meta:
+        model = Clap
+        fields = ["id", "user_first_name", "article_title"]
