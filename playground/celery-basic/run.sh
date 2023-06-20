@@ -15,6 +15,5 @@ python manage.py shell
 from celery_tutorial.celery import debug_task
 debug_task.delay()
 
-
 # Terminal-2
 celery -A celery_tutorial.celery worker --loglevel=info

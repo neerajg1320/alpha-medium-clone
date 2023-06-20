@@ -32,3 +32,14 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # To build images and run containers.
 docker compose -f local.yml up --build -d --remove-orphans
+
+# The command to run celery manually
+make shell-api
+celery -A project.celery worker --loglevel=INFO
+
+# Add profiles migrations
+docker compose -f local.yml run --rm api sh -c "python manage.py makemigrations profiles"
+docker compose -f local.yml run --rm api sh -c "python manage.py migrate"
+
+# Add Authentication
+python -c "import secrets; print(secrets.token_urlsafe(38))"

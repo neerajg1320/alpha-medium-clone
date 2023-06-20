@@ -8,7 +8,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from project.settings.local import DEFAULT_FROM_EMAIL
+# TBD: This should be from environment
+# from project.settings.local import DEFAULT_FROM_EMAIL
+from project.settings.production import DEFAULT_FROM_EMAIL
 
 from .exceptions import CantFollowYourself
 from .models import Profile
