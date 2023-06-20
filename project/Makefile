@@ -1,3 +1,6 @@
+build-up:
+	docker compose -f local.yml up -d --build --remove-orphans
+
 build:
 	docker compose -f local.yml build 
 
@@ -119,3 +122,9 @@ check-api:
 
 check-noserver:
 	docker compose -f helpers.yml run --rm monitor sh -c 'nc -zvw10 api 8010'
+
+code-coverage:
+	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. -v
+
+code-coverage-html:
+	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. --cov-report html
