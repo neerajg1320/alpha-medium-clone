@@ -81,10 +81,10 @@ EMAIL_SUBJECT_PREFIX = env(
 # DOMAIN = env("DOMAIN")
 
 EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
-EMAIL_HOST = "imap.gmail.com"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "neerajgupta.finance"
 EMAIL_HOST_PASSWORD = "chpdpemnebqfeoss"
-EMAIL_PORT = 465
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 DOMAIN = env("DOMAIN")
