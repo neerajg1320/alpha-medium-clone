@@ -80,14 +80,6 @@ EMAIL_SUBJECT_PREFIX = env(
 # EMAIL_USE_TLS = True
 # DOMAIN = env("DOMAIN")
 
-"host": "imap.gmail.com",
-"imap_port": 993,
-"smtp_address": "smtp.gmail.com",
-"smtp_port": 465,
-"username": "neerajgupta.finance",
-"password": 'chpdpemnebqfeoss',
-"email": "neerajgupta.finance@gmail.com"
-
 EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
 EMAIL_HOST = "imap.gmail.com"
 EMAIL_HOST_USER = "neerajgupta.finance"
